@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forms - FormWiz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2980b9;
+            --hover-color: #1c598a;
+            --background-color: #f8f9fa;
+            --text-color: #2c3e50;
+            --header-color: #2c3e50;
+            --error-color: #e74c3c;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            background-color: #eaf1f8;
+            zoom: 0.90;
+            min-height: 100vh;
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background-color: #2c3e50;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+        header img {
+            cursor: pointer;
+        }
+        nav {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 38px;
+            z-index: 2;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.18em;
+            letter-spacing: 0.02em;
+            padding: 2px 8px;
+            transition: color 0.2s, background 0.2s, box-shadow 0.2s;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+        }
+        nav a:hover {
+            color: #ff7043;
+            background: rgba(255,255,255,0.08);
+            box-shadow: 0 2px 8px rgba(44,62,80,0.10);
+        }
+        .nav-chevron {
+            display: inline-block;
+            margin-left: 6px;
+            width: 14px;
+            height: 14px;
+            vertical-align: middle;
+        }
+        .nav-chevron svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-left: auto;
+        }
+        .sign-in-btn {
+            background: #fff;
+            color: #222;
+            font-weight: 700;
+            font-size: 1.08em;
+            border: none;
+            border-radius: 22px;
+            padding: 8px 28px;
+            margin-left: 18px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.10);
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            outline: none;
+        }
+        .sign-in-btn:hover {
+            background: #f4f4f4;
+            color: #2980b9;
+            box-shadow: 0 4px 16px rgba(44,62,80,0.13);
+        }
+        .nav-dropdown-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 38px;
+            background: #fff;
+            min-width: 210px;
+            box-shadow: 0 4px 24px rgba(44,62,80,0.13);
+            border-radius: 10px;
+            z-index: 10;
+            padding: 12px 0;
+            flex-direction: column;
+            gap: 0;
+        }
+        .dropdown-menu a {
+            color: #222;
+            padding: 12px 28px;
+            text-decoration: none;
+            display: block;
+            font-weight: 600;
+            font-size: 1.08em;
+            border-radius: 0;
+            transition: background 0.18s, color 0.18s;
+        }
+        .dropdown-menu a:hover {
+            background: #eaf1f8;
+            color: #2980b9;
+        }
+        .nav-dropdown-wrapper.open .dropdown-menu {
+            display: flex;
+            animation: dropdownFadeIn 0.22s cubic-bezier(0.4,0,0.2,1);
+        }
+        @keyframes dropdownFadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .forms-chevron {
+            transition: transform 0.28s cubic-bezier(0.4,0,0.2,1);
+        }
+        .nav-dropdown-wrapper.open .forms-chevron {
+            transform: rotate(-90deg);
+        }
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 10px;
+            }
+            nav {
+                position: static;
+                transform: none;
+                margin-top: 10px;
+            }
+        }
+        main {
+            flex: 1 0 auto;
+        }
+        .pro-footer, footer {
+            flex-shrink: 0;
+        }
+        .user-info {
+            position: absolute;
+            right: 70px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .welcome-message {
+            color: #ffffff;
+            font-weight: 500;
+            font-size: 1.5em;
+        }
+
+        .settings-button {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: 600;
+        }
+
+        .settings-button:hover {
+            background-color: var(--hover-color);
+        }
+
+        .logout-button {
+            background-color: var(--error-color);
+            color: #ffffff;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            width: 100px;
+        }
+
+        .logout-button:hover {
+            background-color: #c0392b;
+        }
+
+        section {
+            padding: 30px;
+            text-align: center;
+            flex: 1;
+        }
+
+        section h1 {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+        }
+
+        .forms-section {
+            border: 4px solid lightblue;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            padding-left: 200px;
+            padding-right: 200px;
+       
+            max-width: 780px;
+            
+        }
+
+        .forms-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            justify-items: center;
+        }
+
+        .forms-list li {
+            background: #f8fafc;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(44,62,80,0.08);
+            padding: 28px 22px 22px 22px;
+            min-width: 220px;
+            max-width: 340px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: box-shadow 0.2s, background 0.2s;
+            border: none;
+            position: relative;
+        }
+
+        .forms-list li:hover {
+            background: #eaf1f8;
+            box-shadow: 0 4px 16px rgba(44,62,80,0.13);
+            transform: translateY(-2px) scale(1.03);
+        }
+
+        .forms-list li a {
+            color: #2980b9;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1em;
+            margin-bottom: 12px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .remove-button {
+            background-color: var(--error-color);
+            color: #ffffff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+            width: 100px;
+            margin-top: 10px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .remove-button:hover {
+            background-color: #c0392b;
+        }
+
+        .no-forms-message {
+            color: #7f8c8d;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+            overflow: auto;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #7f8c8d;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--error-color);
+        }
+
+        /* Form Styles */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9em;
+            color: #4a5568;
+            text-align: left;
+        }
+
+        .form-group input, 
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus, 
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(41, 128, 185, 0.1);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background-color: var(--hover-color);
+        }
+
+        .address-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .city-state-zip {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 15px;
+        }
+
+        .error-message {
+            color: var(--error-color);
+            margin-top: 10px;
+            text-align: center;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        /* New styles for form checkboxes and buttons */
+        .form-checkbox {
+            position: absolute;
+            top: 5px;
+            left: 3px;
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
+            z-index: 1;
+            margin-bottom: 5px;
+        }
+
+        .form-action-button {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+            width: 100px;
+            margin-top: 10px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-action-button:hover {
+            background-color: var(--hover-color);
+        }
+
+        #remove-selected-button {
+            background-color: var(--error-color);
+            color: #ffffff;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+            display: none;
+            width:100%;
+            height:40px;
+        }
+
+        #remove-selected-button:hover {
+            background-color: #c0392b;
+        }
+
+        .main-forms-wrapper {
+            max-width: 1200px;
+            margin: 48px auto 48px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .forms-card {
+            background: #fff;
+            border-radius: 24px;
+            box-shadow: 0 4px 32px rgba(44,62,80,0.10);
+            padding: 40px 38px 32px 38px;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .forms-card h1 {
+            color: #2c3e50;
+            font-size: 2.2em;
+            font-family: 'Montserrat', serif;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .forms-card .subtitle {
+            color: #555;
+            font-size: 1.1em;
+            margin-bottom: 28px;
+            text-align: center;
+        }
+
+        .forms-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            justify-content: center;
+        }
+
+        .forms-list li {
+            background: #f8fafc;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(44,62,80,0.08);
+            padding: 28px 22px 22px 22px;
+            width: 28%;
+            min-width: 220px;
+            max-width: 340px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: box-shadow 0.2s, background 0.2s;
+            border: none;
+            position: relative;
+        }
+
+        .forms-list li:hover {
+            background: #eaf1f8;
+            box-shadow: 0 4px 16px rgba(44,62,80,0.13);
+            transform: translateY(-2px) scale(1.03);
+        }
+
+        .forms-list li a {
+            color: #2980b9;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1em;
+            margin-bottom: 12px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .remove-button, .form-action-button, .logout-button {
+            background-color: #2980b9;
+            color: #fff;
+            border: none;
+            border-radius: 7px;
+            padding: 10px 0;
+            width: 100%;
+            font-size: 1em;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+            transition: background 0.2s;
+        }
+
+        .remove-button:hover, .form-action-button:hover, .logout-button:hover {
+            background-color: #1c598a;
+        }
+
+        .no-forms-message {
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-top: 18px;
+            text-align: center;
+        }
+
+        @media (max-width: 1100px) {
+            .forms-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 700px) {
+            .forms-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        #portfolio-welcome-message {
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        #portfolio-section {
+            display: none;
+        }
+
+        .pro-footer {
+            background: #2c3e50;
+            color: #f3f7f8;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 60px;
+            padding: 48px 10vw 32px 10vw;
+            border-top: 2px solid #2c3e50;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.18em;
+            margin-top: 0;
+        }
+        .pro-footer-col {
+            flex: 1 1 320px;
+            min-width: 220px;
+            max-width: 420px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .address-col {
+            border-right: 1.5px solid #2c7a7d;
+            padding-right: 48px;
+            align-items: flex-start;
+        }
+        .nav-col {
+            align-items: flex-start;
+            padding-left: 32px;
+            padding-right: 32px;
+            border-right: 1.5px solid #2c7a7d;
+        }
+        .company-col {
+            align-items: flex-start;
+            padding-left: 48px;
+        }
+        .pro-footer-title {
+            font-weight: 700;
+            font-size: 1.25em;
+            margin-bottom: 6px;
+            color: #fff;
+            letter-spacing: 0.02em;
+        }
+        .company-title {
+            margin-top: 8px;
+            margin-bottom: 0;
+        }
+        .pro-footer-contact a {
+            color: #b6e2e6;
+            text-decoration: underline;
+            font-weight: 500;
+            margin-right: 18px;
+            transition: color 0.2s;
+        }
+        .pro-footer-contact a:hover, .pro-footer-col.nav-col a:hover {
+            color: #ff7043;
+        }
+        .pro-footer-logo {
+            margin-bottom: 8px;
+        }
+        .pro-footer-desc {
+            color: #e0e6ea;
+            font-size: 1em;
+            margin-top: 0;
+            line-height: 1.5;
+        }
+        .pro-footer-col.nav-col a {
+            color: #b6e2e6;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 6px;
+            transition: color 0.2s;
+            font-size: 1em;
+        }
+        .pro-footer-col.nav-col a:not(:last-child) {
+            margin-bottom: 8px;
+        }
+        @media (max-width: 900px) {
+            .pro-footer {
+                flex-direction: column;
+                gap: 32px;
+                padding: 32px 4vw 18px 4vw;
+            }
+            .address-col, .company-col, .nav-col {
+                border: none;
+                padding: 0;
+                min-width: unset;
+                max-width: unset;
+            }
+            .company-col, .nav-col {
+                align-items: flex-start;
+            }
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #374656;
+            color: white;
+        }
+        .user-actions-row {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 14px;
+            margin-bottom: 18px;
+            width: 100%;
+            max-width: 320px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .settings-button, .logout-button {
+            height: 44px !important;
+            min-width: 120px;
+            max-width: 320px;
+            width: 100%;
+            margin: 0;
+            font-size: 1em;
+            border-radius: 7px;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="FormWiz Logo" width="130" height="80" onclick="location.href='index.html';">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="forms.html">Forms</a>
+            <a href="contact.html">Contact Us</a>
+        </nav>
+    </header>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeSettings()">&times;</span>
+            <h2>User Information</h2>
+            <form id="user-settings-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="settings-first-name">First Name</label>
+                        <input type="text" id="settings-first-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="settings-last-name">Last Name</label>
+                        <input type="text" id="settings-last-name" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="settings-email">Email</label>
+                    <input type="email" id="settings-email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="settings-phone">Phone Number</label>
+                    <input type="tel" id="settings-phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Address</label>
+                    <div class="address-row">
+                        <div class="form-group">
+                            <input type="text" id="settings-street" placeholder="Street Address" required>
+                        </div>
+                        <div class="city-state-zip">
+                            <div class="form-group">
+                                <input type="text" id="settings-city" placeholder="City" required>
+                            </div>
+                            <div class="form-group">
+                                <select id="settings-state" required>
+                                    <option value="">State</option>
+                                    <option value="AL">AL</option>
+                                    <option value="AK">AK</option>
+                                    <option value="AZ">AZ</option>
+                                    <option value="AR">AR</option>
+                                    <option value="CA">CA</option>
+                                    <option value="CO">CO</option>
+                                    <option value="CT">CT</option>
+                                    <option value="DE">DE</option>
+                                    <option value="FL">FL</option>
+                                    <option value="GA">GA</option>
+                                    <option value="HI">HI</option>
+                                    <option value="ID">ID</option>
+                                    <option value="IL">IL</option>
+                                    <option value="IN">IN</option>
+                                    <option value="IA">IA</option>
+                                    <option value="KS">KS</option>
+                                    <option value="KY">KY</option>
+                                    <option value="LA">LA</option>
+                                    <option value="ME">ME</option>
+                                    <option value="MD">MD</option>
+                                    <option value="MA">MA</option>
+                                    <option value="MI">MI</option>
+                                    <option value="MN">MN</option>
+                                    <option value="MS">MS</option>
+                                    <option value="MO">MO</option>
+                                    <option value="MT">MT</option>
+                                    <option value="NE">NE</option>
+                                    <option value="NV">NV</option>
+                                    <option value="NH">NH</option>
+                                    <option value="NJ">NJ</option>
+                                    <option value="NM">NM</option>
+                                    <option value="NY">NY</option>
+                                    <option value="NC">NC</option>
+                                    <option value="ND">ND</option>
+                                    <option value="OH">OH</option>
+                                    <option value="OK">OK</option>
+                                    <option value="OR">OR</option>
+                                    <option value="PA">PA</option>
+                                    <option value="RI">RI</option>
+                                    <option value="SC">SC</option>
+                                    <option value="SD">SD</option>
+                                    <option value="TN">TN</option>
+                                    <option value="TX">TX</option>
+                                    <option value="UT">UT</option>
+                                    <option value="VT">VT</option>
+                                    <option value="VA">VA</option>
+                                    <option value="WA">WA</option>
+                                    <option value="WV">WV</option>
+                                    <option value="WI">WI</option>
+                                    <option value="WY">WY</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="settings-zip" placeholder="ZIP" pattern="[0-9]{5}" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn">Save Changes</button>
+                <div class="error-message" id="settings-error"></div>
+            </form>
+        </div>
+    </div>
+	
+	<br>
+	<center>
+	<h2 id="portfolio-welcome-message" style="color: var(--text-color); margin-bottom: 10px;"></h2>
+	</center>
+	
+
+<div class="main-forms-wrapper">
+    <div id="portfolio-section" class="forms-card">
+       <center> <h1>My Form Portfolio</h1><br></center>
+        <div class="subtitle">All your saved forms in one place. Open, manage, or remove forms below.</div><br>
+        <ul id="my-forms-list" class="forms-list">
+            <!-- User's forms will be dynamically inserted here -->
+        </ul>
+        <div id="no-forms-message" class="no-forms-message" style="display: none;">
+            You currently have no forms in your portfolio.
+        </div><br>
+        <button id="remove-selected-button" class="remove-button">Remove Forms</button>
+    </div>
+    <div class="forms-card">
+        <h1>Available Forms</h1><br>
+        <div class="subtitle">Browse and add new forms to your portfolio. Click a form to add it below.</div><br>
+        <ul id="available-forms-list" class="forms-list">
+            <li><a href="#" data-form-id="fee-waiver" data-form-url="fee-waiver.html?formId=fee-waiver">Court Fees Waiver</a></li>
+            <li><a href="#" data-form-id="example" data-form-url="example.html?formId=example">Example</a></li>
+            <li><a href="#" data-form-id="example2" data-form-url="example2.html?formId=example2">Example2</a></li>
+            <li><a href="#" data-form-id="example3" data-form-url="example3.html?formId=example3">Example3</a></li>
+            <li><a href="#" data-form-id="smallclaims" data-form-url="smallclaims.html?formId=example3">Small Claims</a></li>
+        </ul><br>
+    </div>
+    <div class="user-actions-row" style="display: flex; flex-direction: column; justify-content: center; gap: 14px; margin-bottom: 18px; width: 100%; max-width: 320px; margin-left: auto; margin-right: auto;">
+        <button class="settings-button" id="user-settings-btn" style="width: 100%; height: 44px; display: none;">User Settings</button>
+        <button class="logout-button" id="logout-button" style="width: 100%; height: 44px;">Logout</button>
+    </div>
+</div>
+
+    <div class="pro-footer">
+        <div class="pro-footer-col address-col">
+            <div class="pro-footer-logo">
+                <img src="logo.png" alt="FormWiz Logo" style="max-width:120px;max-height:80px;">
+            </div>
+            <div class="pro-footer-title">FormWiz</div>
+            <div>1043 Garland Ave Unit C #1235<br>San Jose, CA 95126, US</div>
+            <div class="pro-footer-contact">
+                <a href="tel:18884108370">1-888-410-8370</a> &nbsp; 
+                <a href="mailto:info@rdr-gp.com">info@rdr-gp.com</a>
+            </div>
+        </div>
+        <div class="pro-footer-col nav-col">
+            <div class="pro-footer-title">Navigation</div>
+            <a href="index.html">Home</a>
+            <a href="FreeForm.html">Forms</a>
+            <a href="FAQ.html">FAQ</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+        <div class="pro-footer-col company-col">
+            <div class="pro-footer-title company-title">About FormWiz</div>
+            <div class="pro-footer-desc">FormWiz consists of a group of proven professionals with over 70 years of combined technical, operational and administrative service experience within the non-profit, private, and public sectors. We simplify legal paperwork for everyone.</div>
+        </div>
+    </div>
+    <footer>
+        <div
+            class="shape"
+            data-type="options"
+            data-style="shape=roundRect;rounded=1;arcSize=20;whiteSpace=wrap;html=1;nodeType=options;questionType=dropdown;nodeId=Option_node;section=1;spacing=12;fontSize=16;"
+        >
+            Options Node
+        </div>
+        <div
+            class="shape"
+            data-type="imageOption"
+            data-style="shape=roundRect;rounded=1;arcSize=20;whiteSpace=wrap;html=1;nodeType=imageOption;questionType=dropdown;nodeId=Image_Option_node;section=1;spacing=12;fontSize=16;"
+        >
+            Image Option Node
+        </div>
+        <div class="button-bar"> 
+        </div>
+    </footer>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+ <script>
+    // Firebase Configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyDS-tSSn7fdLBgwzfHQ_1MPG1w8S_4qb04",
+        authDomain: "formwiz-3f4fd.firebaseapp.com",
+        projectId: "formwiz-3f4fd",
+        storageBucket: "formwiz-3f4fd.appspot.com",
+        messagingSenderId: "404259212529",
+        appId: "1:404259212529:web:15a33bce82383b21cfed50",
+        measurementId: "G-P07YEN0HPD"
+    };
+
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // DOM Elements
+    const welcomeMessage = document.getElementById('welcome-message');
+    const settingsButton = document.getElementById('settings-button');
+    const logoutButton = document.getElementById('logout-button');
+    const settingsModal = document.getElementById('settings-modal');
+    const userSettingsForm = document.getElementById('user-settings-form');
+    const settingsError = document.getElementById('settings-error');
+    const myFormsList = document.getElementById('my-forms-list');
+    const availableFormsList = document.getElementById('available-forms-list');
+    const noFormsMessage = document.getElementById('no-forms-message');
+    const removeSelectedButton = document.getElementById('remove-selected-button');
+    const signInBtn = document.getElementById('sign-in-btn');
+
+    // Keep track of selected forms
+    const selectedForms = new Set();
+
+    // Modal Functions
+    function openSettings() {
+        settingsModal.style.display = 'block';
+    }
+
+    function closeSettings() {
+        settingsModal.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        if (event.target == settingsModal) {
+            closeSettings();
+        }
+    };
+
+    // Logout Function
+    logoutButton.addEventListener('click', () => {
+        auth.signOut().then(() => {
+            window.location.href = 'index.html';
+        }).catch((error) => {
+            console.error('Sign Out Error', error);
+        });
+    });
+
+    // Form Management Functions
+    function renderMyForms(forms) {
+        myFormsList.innerHTML = '';
+        if (forms.length === 0) {
+            noFormsMessage.style.display = 'block';
+            removeSelectedButton.style.display = 'none';
+        } else {
+            noFormsMessage.style.display = 'none';
+            forms.forEach((form) => {
+                const li = document.createElement('li');
+                
+                // Add checkbox for selection
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.classList.add('form-checkbox');
+                checkbox.dataset.formId = form.id;
+                checkbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        selectedForms.add(form.id);
+                    } else {
+                        selectedForms.delete(form.id);
+                    }
+                    updateRemoveSelectedButton();
+                });
+                
+                const a = document.createElement('a');
+                a.href = form.url;
+                a.textContent = form.name;
+                
+                // Create Open button
+                const openButton = document.createElement('button');
+                openButton.textContent = 'Open';
+                openButton.classList.add('form-action-button');
+                openButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.location.href = form.url;
+                });
+
+                li.appendChild(checkbox);
+                li.appendChild(a);
+                li.appendChild(openButton);
+                myFormsList.appendChild(li);
+            });
+        }
+    }
+
+    function updateRemoveSelectedButton() {
+        if (selectedForms.size > 0) {
+            removeSelectedButton.style.display = 'block';
+        } else {
+            removeSelectedButton.style.display = 'none';
+        }
+    }
+
+    // Remove selected forms
+    removeSelectedButton.addEventListener('click', async () => {
+        if (selectedForms.size === 0) return;
+        
+        const userId = auth.currentUser.uid;
+        const batch = db.batch();
+        
+        selectedForms.forEach(formId => {
+            const formRef = db.collection('users').doc(userId).collection('forms').doc(formId);
+            batch.delete(formRef);
+        });
+        
+        try {
+            await batch.commit();
+            selectedForms.clear();
+            fetchMyForms(userId);
+        } catch (error) {
+            console.error('Error removing selected forms:', error);
+        }
+    });
+
+    function fetchMyForms(userId) {
+        db.collection('users').doc(userId).collection('forms').get()
+            .then((querySnapshot) => {
+                const forms = [];
+                querySnapshot.forEach((doc) => {
+                    forms.push({
+                        id: doc.id,
+                        ...doc.data()
+                    });
+                });
+                console.log('Fetched forms:', forms.length, forms);
+                renderMyForms(forms);
+                selectedForms.clear();
+                updateRemoveSelectedButton();
+            })
+            .catch((error) => {
+                console.error('Error fetching user forms:', error);
+            });
+    }
+
+    // Update Available Forms rendering
+    function renderAvailableForms() {
+        const formItems = availableFormsList.querySelectorAll('li');
+        
+        formItems.forEach(li => {
+            const anchor = li.querySelector('a');
+            if (anchor) {
+                const formId = anchor.getAttribute('data-form-id');
+                const formUrl = anchor.getAttribute('data-form-url');
+                const formName = anchor.textContent;
+                
+                // Create Click Here button
+                const addButton = document.createElement('button');
+                addButton.textContent = 'Click Here';
+                addButton.classList.add('form-action-button');
+                addButton.dataset.formId = formId;
+                addButton.dataset.formUrl = formUrl;
+                addButton.dataset.formName = formName;
+                
+                addButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    addFormToPortfolio(formId, formUrl, formName);
+                });
+                
+                li.appendChild(addButton);
+            }
+        });
+    }
+    
+    async function addFormToPortfolio(formId, formUrl, formName) {
+        const user = auth.currentUser;
+        if (!user) {
+            // Not signed in, just go to the form
+            window.location.href = formUrl;
+            return;
+        }
+        const userId = user.uid;
+        try {
+            // Check if form exists in user's collection
+            const formDoc = await db.collection('users').doc(userId).collection('forms').doc(formId).get();
+            if (formDoc.exists) {
+                alert('You already have this form in your portfolio.');
+                fetchMyForms(userId); // Always refresh UI
+            } else {
+                // Add new form to user's collection
+                await db.collection('users').doc(userId).collection('forms').doc(formId).set({
+                    name: formName,
+                    url: formUrl,
+                    addedAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                // Refresh the forms list
+                fetchMyForms(userId);
+            }
+        } catch (error) {
+            console.error('Error handling form:', error);
+        }
+    }
+
+    // Available Forms Click Handler - Keep existing functionality
+    availableFormsList.addEventListener('click', async (e) => {
+        e.preventDefault();
+        if (e.target.tagName === 'A') {
+            const formId = e.target.getAttribute('data-form-id');
+            const formUrl = e.target.getAttribute('data-form-url');
+            const formName = e.target.textContent;
+            
+            addFormToPortfolio(formId, formUrl, formName);
+        }
+    });
+
+    // User Settings Form Handler
+    userSettingsForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        settingsError.textContent = '';
+        const userId = auth.currentUser.uid;
+        const updatedData = {
+            firstName: document.getElementById('settings-first-name').value.trim(),
+            lastName: document.getElementById('settings-last-name').value.trim(),
+            email: document.getElementById('settings-email').value.trim(),
+            phone: document.getElementById('settings-phone').value.trim(),
+            address: {
+                street: document.getElementById('settings-street').value.trim(),
+                city: document.getElementById('settings-city').value.trim(),
+                state: document.getElementById('settings-state').value,
+                zip: document.getElementById('settings-zip').value.trim()
+            },
+            updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+        };
+        try {
+            // Update user document (create if doesn't exist)
+            await db.collection('users').doc(userId).set(updatedData, { merge: true });
+            // Update welcome message if it exists
+            if (welcomeMessage) {
+                welcomeMessage.textContent = `Welcome ${updatedData.firstName} ${updatedData.lastName}`;
+            }
+            // Update portfolio welcome message if it exists
+            const portfolioWelcome = document.getElementById('portfolio-welcome-message');
+            if (portfolioWelcome) {
+                portfolioWelcome.textContent = `Welcome, ${updatedData.firstName} ${updatedData.lastName}`;
+            }
+            // Update auth email if changed
+            if (auth.currentUser.email !== updatedData.email) {
+                await auth.currentUser.updateEmail(updatedData.email);
+            }
+            closeSettings();
+        } catch (error) {
+            settingsError.textContent = error.message;
+            console.error('Error updating profile:', error);
+        }
+    });
+
+    // Update the auth state listener in forms.html
+    auth.onAuthStateChanged(async (user) => {
+        if (user) {
+            const portfolioSection = document.getElementById('portfolio-section');
+            if (portfolioSection) portfolioSection.style.display = 'block';
+            if (settingsButton) settingsButton.style.display = 'inline-block';
+            if (logoutButton) logoutButton.style.display = 'block';
+            if (signInBtn) signInBtn.style.display = 'none';
+            try {
+                // Get user document from Firestore
+                const userDoc = await db.collection('users').doc(user.uid).get();
+                if (userDoc.exists) {
+                    const userData = userDoc.data();
+                    // Update welcome message with actual name
+                    if (welcomeMessage) welcomeMessage.textContent = `${userData.firstName} ${userData.lastName}`;
+                    const portfolioWelcome = document.getElementById('portfolio-welcome-message');
+                    if (portfolioWelcome) portfolioWelcome.textContent = `Welcome, ${userData.firstName} ${userData.lastName}`;
+                    // Pre-populate settings form
+                    document.getElementById('settings-first-name').value = userData.firstName || '';
+                    document.getElementById('settings-last-name').value = userData.lastName || '';
+                    document.getElementById('settings-email').value = userData.email || user.email || '';
+                    document.getElementById('settings-phone').value = userData.phone || '';
+                    document.getElementById('settings-street').value = userData.address?.street || '';
+                    document.getElementById('settings-city').value = userData.address?.city || '';
+                    document.getElementById('settings-state').value = userData.address?.state || '';
+                    document.getElementById('settings-zip').value = userData.address?.zip || '';
+                    // Load user's forms
+                    fetchMyForms(user.uid);
+                    // Render available forms with buttons
+                    renderAvailableForms();
+                } else {
+                    // Create user document if it doesn't exist
+                    const newUserData = {
+                        firstName: '',
+                        lastName: '',
+                        email: user.email,
+                        phone: '',
+                        address: {
+                            street: '',
+                            city: '',
+                            state: '',
+                            zip: ''
+                        },
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                    };
+                    await db.collection('users').doc(user.uid).set(newUserData);
+                    if (welcomeMessage) welcomeMessage.textContent = `Welcome User`;
+                    // Render available forms with buttons
+                    renderAvailableForms();
+                    fetchMyForms(user.uid);
+                }
+            } catch (error) {
+                console.error('Error loading user data:', error);
+                if (welcomeMessage) welcomeMessage.textContent = 'Welcome User';
+                fetchMyForms(user.uid);
+            }
+            if (settingsButton) settingsButton.addEventListener('click', openSettings);
+        } else {
+            const portfolioSection = document.getElementById('portfolio-section');
+            if (portfolioSection) portfolioSection.style.display = 'none';
+            if (settingsButton) settingsButton.style.display = 'none';
+            if (logoutButton) logoutButton.style.display = 'none';
+            if (signInBtn) signInBtn.style.display = 'inline-block';
+        }
+    });
+
+    // Dropdown for Forms nav (copied from index.html)
+    document.addEventListener('DOMContentLoaded', function() {
+        const formsWrapper = document.getElementById('forms-dropdown-wrapper');
+        const formsLink = document.getElementById('forms-nav-link');
+        const dropdownMenu = document.getElementById('forms-dropdown-menu');
+        let dropdownOpen = false;
+        function openDropdown() {
+            formsWrapper.classList.add('open');
+            dropdownOpen = true;
+        }
+        function closeDropdown() {
+            formsWrapper.classList.remove('open');
+            dropdownOpen = false;
+        }
+        formsLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            dropdownOpen ? closeDropdown() : openDropdown();
+        });
+        document.addEventListener('mousedown', function(e) {
+            if (!formsWrapper.contains(e.target)) {
+                closeDropdown();
+            }
+        });
+        formsLink.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                dropdownOpen ? closeDropdown() : openDropdown();
+            }
+        });
+    });
+
+    // Ensure sign-in button only shows when not logged in
+    document.addEventListener('DOMContentLoaded', function() {
+        const signInBtn = document.querySelector('.sign-in-btn');
+        const auth = firebase.auth();
+        auth.onAuthStateChanged(function(user) {
+            if (user) {
+                if (signInBtn) signInBtn.style.display = 'none';
+            } else {
+                if (signInBtn) signInBtn.style.display = 'block';
+            }
+        });
+    });
+
+    // Show/hide User Settings button based on auth state
+    const userSettingsBtn = document.getElementById('user-settings-btn');
+    auth.onAuthStateChanged(function(user) {
+        if (user) {
+            if (userSettingsBtn) userSettingsBtn.style.display = 'block';
+        } else {
+            if (userSettingsBtn) userSettingsBtn.style.display = 'none';
+        }
+    });
+    // Open settings modal on click, always autofill with latest user data
+    if (userSettingsBtn) {
+        userSettingsBtn.addEventListener('click', async function() {
+            const user = auth.currentUser;
+            if (user) {
+                try {
+                    const userDoc = await db.collection('users').doc(user.uid).get();
+                    if (userDoc.exists) {
+                        const userData = userDoc.data();
+                        document.getElementById('settings-first-name').value = userData.firstName || '';
+                        document.getElementById('settings-last-name').value = userData.lastName || '';
+                        document.getElementById('settings-email').value = userData.email || user.email || '';
+                        document.getElementById('settings-phone').value = userData.phone || '';
+                        document.getElementById('settings-street').value = userData.address?.street || '';
+                        document.getElementById('settings-city').value = userData.address?.city || '';
+                        document.getElementById('settings-state').value = userData.address?.state || '';
+                        document.getElementById('settings-zip').value = userData.address?.zip || '';
+                    }
+                } catch (error) {
+                    // fallback: do nothing
+                }
+            }
+            openSettings();
+        });
+    }
+</script>
+</body>
+</html>

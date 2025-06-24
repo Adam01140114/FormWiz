@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FormWiz - Account</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            background-color: #eaf1f8;
+            
+        }
+        header {
+            width: 100vw;
+            left: 0;
+            top: 0;
+            background-color: #2c3e50;
+            padding: 20px 0 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            box-sizing: border-box;
+        }
+        header img {
+            cursor: pointer;
+            margin-left: 24px;
+        }
+        nav {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 38px;
+            z-index: 2;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.18em;
+            letter-spacing: 0.02em;
+            padding: 2px 8px;
+            transition: color 0.2s, background 0.2s, box-shadow 0.2s;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+        }
+        nav a:hover {
+            color: #ff7043;
+            background: rgba(255,255,255,0.08);
+            box-shadow: 0 2px 8px rgba(44,62,80,0.10);
+        }
+        .header-actions {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 10px 0 10px 0;
+            }
+            nav {
+                position: static;
+                transform: none;
+                margin-top: 10px;
+            }
+        }
+        :root {
+            --primary-color: #2980b9;
+            --hover-color: #1c598a;
+            --background-color: #f8f9fa;
+            --text-color: #2c3e50;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #eaf1f8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 600px;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 40px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 50px !important;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9em;
+            color: #4a5568;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(41, 128, 185, 0.1);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .btn:hover {
+            background-color: var(--hover-color);
+        }
+
+        .toggle-link {
+            text-align: center;
+            margin-top: 25px;
+            color: var(--primary-color);
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .toggle-link:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: #e53e3e;
+            margin-top: 15px;
+            text-align: center;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .address-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        .city-state-zip {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .info-text {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            color: #4a5568;
+        }
+
+        .terms-group {
+            margin-top: 18px;
+            margin-bottom: 10px;
+        }
+        .terms-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        .terms-row input[type="checkbox"] {
+            margin-top: 4px;
+            margin-right: 0;
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+        }
+        .terms-label {
+            font-weight: 500;
+            font-size: 1em;
+            line-height: 1.5;
+            color: #333;
+            margin: 0;
+            display: block;
+        }
+        .signature-row {
+            display: flex;
+            gap: 32px;
+            margin-top: 18px;
+            flex-wrap: wrap;
+        }
+        .signature-group, .date-group {
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 220px;
+            min-width: 180px;
+        }
+        .signature-group label, .date-group label {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        .signature-input {
+            font-family: 'Dancing Script', cursive, 'Comic Sans MS', 'Pacifico', 'Brush Script MT', sans-serif;
+            font-size: 1.2em;
+            padding: 10px;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            background: #f9fafb;
+            transition: border-color 0.3s;
+        }
+        .signature-input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+        @media (max-width: 600px) {
+            .signature-row {
+                flex-direction: column;
+                gap: 16px;
+            }
+        }
+    </style>
+
+    <style>
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .address-row {
+            display: grid;
+            grid-template-columns: 2fr;
+            gap: 5px;
+        }
+
+        .city-state-zip {
+            display: grid;
+            grid-template-columns: 2.1fr 1.1fr 2.1fr;
+            gap: 5px;
+        }
+
+        #signup-first-name,
+        #signup-last-name,
+        #signup-street {
+            max-width: 280px;
+        }
+
+        #signup-city {
+            max-width: 200px;
+        }
+
+        #signup-state {
+            max-width: 120px;
+        }
+
+        #signup-zip {
+            max-width: 150px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 95%;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<header>
+    <img src="logo.png" alt="FormWiz Logo" width="130" height="80" onclick="location.href='index.html';">
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="forms.html">Forms</a>
+        <a href="contact.html">Contact Us</a>
+    </nav>
+</header>
+
+<!-- Account Info Container -->
+<div class="container" id="account-info-container">
+    <h2>Account Info</h2>
+    <p class="info-text">Create an account to personalized access to forms and more!</p>
+    
+    <button class="btn" id="show-signup-btn">Sign Up</button>
+    <button class="btn" id="show-login-btn">Log In</button>
+</div>
+
+<!-- Login Container -->
+<div class="container" id="login-container" style="display: none;">
+    <h2>Welcome Back</h2>
+    <form id="login-form">
+        <div class="form-group">
+            <label for="login-email">Email Address</label>
+            <input type="email" id="login-email" required>
+        </div>
+        <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" required>
+        </div>
+        <button type="submit" class="btn">Sign In</button>
+        <div class="toggle-link" id="show-signup">New to FormWiz? Create Account</div>
+        <div class="error-message" id="login-error"></div>
+    </form>
+</div>
+
+<!-- Signup Container -->
+<div class="container" id="signup-container" style="display: none;">
+    <h2>Create Account</h2>
+    <form id="signup-form">
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="signup-first-name">First Name</label>
+                <input type="text" id="signup-first-name" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-last-name">Last Name</label>
+                <input type="text" id="signup-last-name" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="signup-email">Email Address</label>
+            <input type="email" id="signup-email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="signup-phone">Phone Number</label>
+            <!-- Removed the pattern for easier testing -->
+            <input type="tel" id="signup-phone" placeholder="123-456-7890" required>
+        </div>
+
+        <div class="form-group">
+            <label>Address</label>
+            <div class="address-row">
+                <div class="form-group">
+                    <input type="text" id="signup-street" placeholder="Street Address" required>
+                </div>
+                <div class="city-state-zip">
+                    <div class="form-group">
+                        <input type="text" id="signup-city" placeholder="City" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="signup-state" required>
+                            <option value="">State</option>
+                            <option value="AL">Alabama</option>
+                            <option value="AK">Alaska</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="AR">Arkansas</option>
+                            <option value="CA">California</option>
+                            <option value="CO">Colorado</option>
+                            <option value="CT">Connecticut</option>
+                            <option value="DE">Delaware</option>
+                            <option value="FL">Florida</option>
+                            <option value="GA">Georgia</option>
+                            <option value="HI">Hawaii</option>
+                            <option value="ID">Idaho</option>
+                            <option value="IL">Illinois</option>
+                            <option value="IN">Indiana</option>
+                            <option value="IA">Iowa</option>
+                            <option value="KS">Kansas</option>
+                            <option value="KY">Kentucky</option>
+                            <option value="LA">Louisiana</option>
+                            <option value="ME">Maine</option>
+                            <option value="MD">Maryland</option>
+                            <option value="MA">Massachusetts</option>
+                            <option value="MI">Michigan</option>
+                            <option value="MN">Minnesota</option>
+                            <option value="MS">Mississippi</option>
+                            <option value="MO">Missouri</option>
+                            <option value="MT">Montana</option>
+                            <option value="NE">Nebraska</option>
+                            <option value="NV">Nevada</option>
+                            <option value="NH">New Hampshire</option>
+                            <option value="NJ">New Jersey</option>
+                            <option value="NM">New Mexico</option>
+                            <option value="NY">New York</option>
+                            <option value="NC">North Carolina</option>
+                            <option value="ND">North Dakota</option>
+                            <option value="OH">Ohio</option>
+                            <option value="OK">Oklahoma</option>
+                            <option value="OR">Oregon</option>
+                            <option value="PA">Pennsylvania</option>
+                            <option value="RI">Rhode Island</option>
+                            <option value="SC">South Carolina</option>
+                            <option value="SD">South Dakota</option>
+                            <option value="TN">Tennessee</option>
+                            <option value="TX">Texas</option>
+                            <option value="UT">Utah</option>
+                            <option value="VT">Vermont</option>
+                            <option value="VA">Virginia</option>
+                            <option value="WA">Washington</option>
+                            <option value="WV">West Virginia</option>
+                            <option value="WI">Wisconsin</option>
+                            <option value="WY">Wyoming</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <!-- Removed the pattern for easier testing -->
+                        <input type="text" id="signup-zip" placeholder="ZIP" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirm-password">Confirm Password</label>
+                    <input type="password" id="signup-confirm-password" required>
+                </div>
+            </div>
+
+            
+        </div>
+
+        
+
+        <!-- Terms and Conditions Acknowledgment -->
+        <div class="form-group terms-group">
+            <div class="terms-row">
+                <input type="checkbox" id="signup-terms" required>
+                <label for="signup-terms" class="terms-label">
+                    I understand and agree that, my communications will not be treated as privileged or confidential and will not constitute formation of an attorney-client relationship with Form Wiz or any of its agents, employees, or contractors. Form Wiz does not enter into attorney-client relationships with its clients and merely provides services to facilitate completion of required forms for filing with courts within California. I understand and agree to the terms.
+                </label>
+            </div>
+            <div class="signature-row">
+                <div class="signature-group">
+                    <label for="signup-signature">Signature (type your full name)</label>
+                    <input type="text" id="signup-signature" required class="signature-input">
+                </div>
+                <div class="date-group">
+                    <label for="signup-date">Date</label>
+                    <input type="date" id="signup-date" required>
+                </div>
+            </div>
+        </div>
+<br><br>
+        <button type="submit" class="btn">Create Account</button>
+        <div class="toggle-link" id="show-login">Already have an account? Sign In</div>
+        <div class="error-message" id="signup-error"></div>
+    </form>
+</div>
+
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+  // Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyDS-tSSn7fdLBgwzfHQ_1MPG1w8S_4qb04",
+    authDomain: "formwiz-3f4fd.firebaseapp.com",
+    projectId: "formwiz-3f4fd",
+    storageBucket: "formwiz-3f4fd.appspot.com",
+    messagingSenderId: "404259212529",
+    appId: "1:404259212529:web:15a33bce82383b21cfed50",
+    measurementId: "G-P07YEN0HPD"
+  };
+
+  // Init
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+
+  // Redirect if already logged in
+  auth.onAuthStateChanged(function(user) {
+    if (user) {
+      window.location.href = 'forms.html';
+    }
+  });
+
+  // DOM
+  const accountInfoContainer = document.getElementById('account-info-container');
+  const loginContainer = document.getElementById('login-container');
+  const signupContainer = document.getElementById('signup-container');
+  const showSignupBtn = document.getElementById('show-signup-btn');
+  const showLoginBtn = document.getElementById('show-login-btn');
+  const showSignupLink = document.getElementById('show-signup');
+  const showLoginLink = document.getElementById('show-login');
+  const loginForm = document.getElementById('login-form');
+  const signupForm = document.getElementById('signup-form');
+  const loginError = document.getElementById('login-error');
+  const signupError = document.getElementById('signup-error');
+
+  // Toggle to signup from account info or login
+  showSignupBtn.addEventListener('click', () => {
+    accountInfoContainer.style.display = 'none';
+    signupContainer.style.display = 'block';
+  });
+
+  showSignupLink.addEventListener('click', () => {
+    loginContainer.style.display = 'none';
+    signupContainer.style.display = 'block';
+  });
+
+  // Toggle to login from account info or signup
+  showLoginBtn.addEventListener('click', () => {
+    accountInfoContainer.style.display = 'none';
+    loginContainer.style.display = 'block';
+  });
+
+  showLoginLink.addEventListener('click', () => {
+    signupContainer.style.display = 'none';
+    loginContainer.style.display = 'block';
+  });
+
+  // Login
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    loginError.textContent = '';
+
+    const email = document.getElementById('login-email').value.trim();
+    const password = document.getElementById('login-password').value;
+
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      // Redirect here on success:
+      window.location.href = 'forms.html';
+    } catch (error) {
+      loginError.textContent = error.message;
+      console.error('Login error:', error);
+    }
+  });
+
+  // Signup
+  signupForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    signupError.textContent = '';
+
+    const firstName = document.getElementById('signup-first-name').value.trim();
+    const lastName = document.getElementById('signup-last-name').value.trim();
+    const email = document.getElementById('signup-email').value.trim();
+    const phone = document.getElementById('signup-phone').value.trim();
+    const street = document.getElementById('signup-street').value.trim();
+    const city = document.getElementById('signup-city').value.trim();
+    const state = document.getElementById('signup-state').value;
+    const zip = document.getElementById('signup-zip').value.trim();
+
+    const password = document.getElementById('signup-password').value;
+    const confirmPassword = document.getElementById('signup-confirm-password').value;
+    const termsChecked = document.getElementById('signup-terms').checked;
+    const signature = document.getElementById('signup-signature').value.trim();
+    const date = document.getElementById('signup-date').value;
+
+    if (!termsChecked) {
+        signupError.textContent = 'You must agree to the terms and conditions.';
+        return;
+    }
+    if (!signature) {
+        signupError.textContent = 'Signature is required.';
+        return;
+    }
+    if (!date) {
+        signupError.textContent = 'Date is required.';
+        return;
+    }
+    if (password !== confirmPassword) {
+        signupError.textContent = 'Passwords do not match';
+        return;
+    }
+
+    console.log('Collected form data:', {
+      firstName, lastName, email, phone, street, city, state, zip
+    });
+
+    try {
+      const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+
+      const userData = {
+        firstName,
+        lastName,
+        email,
+        phone,
+        address: { street, city, state, zip },
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        agreedToTerms: true,
+        signature,
+        agreementDate: date
+      };
+
+      await Promise.all([
+        userCredential.user.updateProfile({
+          displayName: `${firstName} ${lastName}`
+        }),
+        db.collection('users').doc(userCredential.user.uid).set(userData)
+      ]);
+
+      // Redirect after successful signup
+      window.location.href = 'forms.html';
+
+    } catch (error) {
+      signupError.textContent = error.message;
+      console.error('Signup error:', error);
+      
+      // Cleanup: delete user if profile update or Firestore save fails
+      if (auth.currentUser) {
+        await auth.currentUser.delete();
+      }
+    }
+  });
+
+</script>
+
+<footer>
+  <div
+    class="shape"
+    data-type="options"
+    data-style="shape=roundRect;rounded=1;arcSize=20;whiteSpace=wrap;html=1;nodeType=options;questionType=dropdown;nodeId=Option_node;section=1;spacing=12;fontSize=16;"
+  >
+    Options Node
+  </div>
+  <div
+    class="shape"
+    data-type="imageOption"
+    data-style="shape=roundRect;rounded=1;arcSize=20;whiteSpace=wrap;html=1;nodeType=imageOption;questionType=dropdown;nodeId=Image_Option_node;section=1;spacing=12;fontSize=16;"
+  >
+    Image Option Node
+  </div>
+  <div class="button-bar"> 
+  </div>
+</footer>
+
+</html>

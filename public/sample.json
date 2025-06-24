@@ -1,0 +1,1044 @@
+{
+  "sections": [
+    {
+      "sectionId": 1,
+      "sectionName": "Section 1",
+      "questions": [
+        {
+          "questionId": 1,
+          "text": "What is your case number?",
+          "type": "text",
+          "logic": {
+            "enabled": false,
+            "prevQuestion": "",
+            "prevAnswer": ""
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [],
+          "labels": [],
+          "nameId": "caseNumber",
+          "placeholder": "Case Number"
+        },
+        {
+          "questionId": 2,
+          "text": "What is your name?",
+          "type": "text",
+          "logic": {
+            "enabled": false,
+            "prevQuestion": "",
+            "prevAnswer": ""
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [],
+          "labels": [],
+          "nameId": "yourName",
+          "placeholder": "Your Name"
+        },
+        {
+          "questionId": 3,
+          "text": "What is your phone number?",
+          "type": "text",
+          "logic": {
+            "enabled": false,
+            "prevQuestion": "",
+            "prevAnswer": ""
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [],
+          "labels": [],
+          "nameId": "yourPhoneNumber",
+          "placeholder": "Phone Number"
+        },
+        {
+          "questionId": 4,
+          "text": "What is your email?",
+          "type": "text",
+          "logic": {
+            "enabled": false,
+            "prevQuestion": "",
+            "prevAnswer": ""
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [],
+          "labels": [],
+          "nameId": "yourEmail",
+          "placeholder": "Email"
+        },
+        {
+          "questionId": 5,
+          "text": "What is your street address?",
+          "type": "multipleTextboxes",
+          "logic": {
+            "enabled": false,
+            "prevQuestion": "",
+            "prevAnswer": ""
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [],
+          "labels": [],
+          "textboxes": [
+            {
+              "label": "",
+              "nameId": "yourStreet",
+              "placeholder": "Street"
+            },
+            {
+              "label": "",
+              "nameId": "yourCity",
+              "placeholder": "City"
+            },
+            {
+              "label": "",
+              "nameId": "yourState",
+              "placeholder": "State"
+            },
+            {
+              "label": "",
+              "nameId": "yourZip",
+              "placeholder": "Zip"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sectionId": 2,
+      "sectionName": "Section 2",
+      "questions": [
+        {
+          "questionId": 6,
+          "text": "Is your mailing address different than your street address?",
+          "type": "dropdown",
+          "logic": {
+            "enabled": false,
+            "prevQuestion": "",
+            "prevAnswer": ""
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "labels": []
+        },
+        {
+          "questionId": 7,
+          "text": "What is your mailing address?",
+          "type": "multipleTextboxes",
+          "logic": {
+            "enabled": true,
+            "prevQuestion": "6",
+            "prevAnswer": "Yes"
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [],
+          "labels": [],
+          "textboxes": [
+            {
+              "label": "",
+              "nameId": "mailingStreet",
+              "placeholder": "Street"
+            },
+            {
+              "label": "",
+              "nameId": "mailingCity",
+              "placeholder": "City"
+            },
+            {
+              "label": "",
+              "nameId": "mailingState",
+              "placeholder": "State"
+            },
+            {
+              "label": "",
+              "nameId": "mailingZip",
+              "placeholder": "Zip"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sectionId": 3,
+      "sectionName": "Section 3",
+      "questions": [
+        {
+          "questionId": 8,
+          "text": "Are you the only one suing?",
+          "type": "dropdown",
+          "logic": {
+            "enabled": false,
+            "prevQuestion": "",
+            "prevAnswer": ""
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "labels": []
+        },
+        {
+          "questionId": 9,
+          "text": "What is the second plaintiff’s name?",
+          "type": "text",
+          "logic": {
+            "enabled": true,
+            "prevQuestion": "8",
+            "prevAnswer": "No"
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [],
+          "labels": [],
+          "nameId": "secondPlaintiffName",
+          "placeholder": "Second Plaintiff's Name"
+        },
+        {
+          "questionId": 10,
+          "text": "What is the second plaintiff’s phone number?",
+          "type": "text",
+          "logic": {
+            "enabled": true,
+            "prevQuestion": "8",
+            "prevAnswer": "No"
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [],
+          "labels": [],
+          "nameId": "secondPlaintiffPhone",
+          "placeholder": "Second Plaintiff's Phone Number"
+        },
+        {
+          "questionId": 11,
+          "text": "What is the second plaintiff’s street address?",
+          "type": "multipleTextboxes",
+          "logic": {
+            "enabled": true,
+            "prevQuestion": "8",
+            "prevAnswer": "No"
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [],
+          "labels": [],
+          "textboxes": [
+            {
+              "label": "",
+              "nameId": "secondPlaintiffStreet",
+              "placeholder": "Street"
+            },
+            {
+              "label": "",
+              "nameId": "secondPlaintiffCity",
+              "placeholder": "City"
+            },
+            {
+              "label": "",
+              "nameId": "secondPlaintiffState",
+              "placeholder": "State"
+            },
+            {
+              "label": "",
+              "nameId": "secondPlaintiffZip",
+              "placeholder": "Zip"
+            }
+          ]
+        },
+        {
+          "questionId": 12,
+          "text": "Is the second plaintiff’s mailing address different than their street address?",
+          "type": "dropdown",
+          "logic": {
+            "enabled": true,
+            "prevQuestion": "8",
+            "prevAnswer": "No"
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "labels": []
+        },
+        {
+          "questionId": 13,
+          "text": "What is the second plaintiff’s mailing address?",
+          "type": "multipleTextboxes",
+          "logic": {
+            "enabled": true,
+            "prevQuestion": "12",
+            "prevAnswer": "Yes"
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [],
+          "labels": [],
+          "textboxes": [
+            {
+              "label": "",
+              "nameId": "secondPlaintiffMailingStreet",
+              "placeholder": "Street"
+            },
+            {
+              "label": "",
+              "nameId": "secondPlaintiffMailingCity",
+              "placeholder": "City"
+            },
+            {
+              "label": "",
+              "nameId": "secondPlaintiffMailingState",
+              "placeholder": "State"
+            },
+            {
+              "label": "",
+              "nameId": "secondPlaintiffMailingZip",
+              "placeholder": "Zip"
+            }
+          ]
+        },
+        {
+          "questionId": 14,
+          "text": "What is the second plaintiff’s email?",
+          "type": "text",
+          "logic": {
+            "enabled": true,
+            "prevQuestion": "8",
+            "prevAnswer": "No"
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [],
+          "labels": [],
+          "nameId": "secondPlaintiffEmail",
+          "placeholder": "Second Plaintiff's Email"
+        }
+      ]
+    },
+    {
+      "sectionId": 4,
+      "sectionName": "Section 4",
+      "questions": [
+        {
+          "questionId": 15,
+          "text": "Please mark all that apply",
+          "type": "checkbox",
+          "logic": {
+            "enabled": false,
+            "prevQuestion": "",
+            "prevAnswer": ""
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [
+            {
+              "label": "Check here if more than two plaintiffs",
+              "nameId": "moreThanTwoPlaintiffs",
+              "value": "More than two plaintiffs"
+            },
+            {
+              "label": "Check here if either plaintiff is doing business under a fictitious name",
+              "nameId": "plaintiffFictitiousName",
+              "value": "Plaintiff using fictitious name"
+            },
+            {
+              "label": "Check here if either plaintiff is a “licensee” or “deferred deposit originator”",
+              "nameId": "plaintiffLicenseeOrOriginator",
+              "value": "Plaintiff is licensee or deferred deposit originator"
+            }
+          ],
+          "labels": []
+        }
+      ]
+    },
+    {
+      "sectionId": 5,
+      "sectionName": "Section 5",
+      "questions": [
+        {
+          "questionId": 16,
+          "text": "What is the name of the person you are suing?",
+          "type": "text",
+          "logic": {
+            "enabled": false,
+            "prevQuestion": "",
+            "prevAnswer": ""
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [],
+          "labels": [],
+          "nameId": "defendantName",
+          "placeholder": "Defendant's Name"
+        },
+        {
+          "questionId": 17,
+          "text": "What is the phone number of the person you are suing?",
+          "type": "text",
+          "logic": {
+            "enabled": false,
+            "prevQuestion": "",
+            "prevAnswer": ""
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [],
+          "labels": [],
+          "nameId": "defendantPhone",
+          "placeholder": "Defendant's Phone Number"
+        },
+        {
+          "questionId": 18,
+          "text": "What is the street address of the person you are suing?",
+          "type": "multipleTextboxes",
+          "logic": {
+            "enabled": false,
+            "prevQuestion": "",
+            "prevAnswer": ""
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [],
+          "labels": [],
+          "textboxes": [
+            {
+              "label": "",
+              "nameId": "defendantStreet",
+              "placeholder": "Street"
+            },
+            {
+              "label": "",
+              "nameId": "defendantCity",
+              "placeholder": "City"
+            },
+            {
+              "label": "",
+              "nameId": "defendantState",
+              "placeholder": "State"
+            },
+            {
+              "label": "",
+              "nameId": "defendantZip",
+              "placeholder": "Zip"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sectionId": 6,
+      "sectionName": "Section 6",
+      "questions": [
+        {
+          "questionId": 19,
+          "text": "Is the mailing address of the person you are suing different than their street address?",
+          "type": "dropdown",
+          "logic": {
+            "enabled": false,
+            "prevQuestion": "",
+            "prevAnswer": ""
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "labels": []
+        },
+        {
+          "questionId": 20,
+          "text": "What is their mailing address?",
+          "type": "multipleTextboxes",
+          "logic": {
+            "enabled": true,
+            "prevQuestion": "19",
+            "prevAnswer": "Yes"
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [],
+          "labels": [],
+          "textboxes": [
+            {
+              "label": "",
+              "nameId": "defendantMailingStreet",
+              "placeholder": "Street"
+            },
+            {
+              "label": "",
+              "nameId": "defendantMailingCity",
+              "placeholder": "City"
+            },
+            {
+              "label": "",
+              "nameId": "defendantMailingState",
+              "placeholder": "State"
+            },
+            {
+              "label": "",
+              "nameId": "defendantMailingZip",
+              "placeholder": "Zip"
+            }
+          ]
+        },
+        {
+          "questionId": 21,
+          "text": "Please mark all that apply",
+          "type": "checkbox",
+          "logic": {
+            "enabled": false,
+            "prevQuestion": "",
+            "prevAnswer": ""
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [
+            {
+              "label": "Check here if more than two defendants",
+              "nameId": "moreThanTwoDefendants",
+              "value": "More than two defendants"
+            },
+            {
+              "label": "Check here if your case is against more than one defendant",
+              "nameId": "multipleDefendants",
+              "value": "Case against multiple defendants"
+            },
+            {
+              "label": "Check here if any defendant is on active military duty",
+              "nameId": "defendantActiveMilitary",
+              "value": "Defendant on active military duty"
+            }
+          ],
+          "labels": []
+        }
+      ]
+    },
+    {
+      "sectionId": 7,
+      "sectionName": "Section 7",
+      "questions": [
+        {
+          "questionId": 22,
+          "text": "How much are you claiming that the defendant owes you?",
+          "type": "money",
+          "logic": {
+            "enabled": false,
+            "prevQuestion": "",
+            "prevAnswer": ""
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [],
+          "labels": []
+        },
+        {
+          "questionId": 23,
+          "text": "Why do they owe you this money?",
+          "type": "bigParagraph",
+          "logic": {
+            "enabled": false,
+            "prevQuestion": "",
+            "prevAnswer": ""
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [],
+          "labels": [],
+          "nameId": "reasonForClaim",
+          "placeholder": "Explain the reason"
+        },
+        {
+          "questionId": 24,
+          "text": "Did this event occur in one day or over a stretch of time?",
+          "type": "dropdown",
+          "logic": {
+            "enabled": false,
+            "prevQuestion": "",
+            "prevAnswer": ""
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [
+            "One day",
+            "Over a stretch of time"
+          ],
+          "labels": []
+        },
+        {
+          "questionId": 25,
+          "text": "When did this event happen?",
+          "type": "date",
+          "logic": {
+            "enabled": true,
+            "prevQuestion": "24",
+            "prevAnswer": "One day"
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [],
+          "labels": []
+        },
+        {
+          "questionId": 26,
+          "text": "Date it started",
+          "type": "date",
+          "logic": {
+            "enabled": true,
+            "prevQuestion": "24",
+            "prevAnswer": "Over a stretch of time"
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [],
+          "labels": []
+        },
+        {
+          "questionId": 27,
+          "text": "Date it ended",
+          "type": "date",
+          "logic": {
+            "enabled": true,
+            "prevQuestion": "24",
+            "prevAnswer": "Over a stretch of time"
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [],
+          "labels": []
+        },
+        {
+          "questionId": 28,
+          "text": "How did you calculate the money owed to you?",
+          "type": "bigParagraph",
+          "logic": {
+            "enabled": false,
+            "prevQuestion": "",
+            "prevAnswer": ""
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [],
+          "labels": [],
+          "nameId": "calculationExplanation",
+          "placeholder": "Explain your calculation"
+        }
+      ]
+    },
+    {
+      "sectionId": 8,
+      "sectionName": "Section 8",
+      "questions": [
+        {
+          "questionId": 29,
+          "text": "Have you asked the defendant to pay you?",
+          "type": "dropdown",
+          "logic": {
+            "enabled": false,
+            "prevQuestion": "",
+            "prevAnswer": ""
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "labels": []
+        },
+        {
+          "questionId": 30,
+          "text": "Explain why you haven’t",
+          "type": "bigParagraph",
+          "logic": {
+            "enabled": true,
+            "prevQuestion": "29",
+            "prevAnswer": "No"
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [],
+          "labels": [],
+          "nameId": "whyNotAsked",
+          "placeholder": "Explain why you haven't asked"
+        }
+      ]
+    },
+    {
+      "sectionId": 9,
+      "sectionName": "Section 9",
+      "questions": [
+        {
+          "questionId": 31,
+          "text": "Why are you filing your claim at this courthouse?",
+          "type": "checkbox",
+          "logic": {
+            "enabled": false,
+            "prevQuestion": "",
+            "prevAnswer": ""
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [
+            {
+              "label": "Where the defendant lives or does business.",
+              "nameId": "reasonDefendantLives",
+              "value": "Defendant's location"
+            },
+            {
+              "label": "Where the plaintiff’s property was damaged",
+              "nameId": "reasonPropertyDamaged",
+              "value": "Property damaged"
+            },
+            {
+              "label": "Where the plaintiff was injured.",
+              "nameId": "reasonPlaintiffInjured",
+              "value": "Plaintiff injured"
+            },
+            {
+              "label": "Where a contract was made, signed, performed, or broken by the defendant or where the defendant lived or did business when the defendant made the contract.",
+              "nameId": "reasonContractLocation",
+              "value": "Contract location"
+            },
+            {
+              "label": "Where the buyer or lessee signed the contract, lives now, or lived when the contract was made",
+              "nameId": "reasonBuyerLocation",
+              "value": "Buyer location"
+            },
+            {
+              "label": "Where the buyer signed the contract, lives now, or lived when the contract was made, if this claim is about a retail installment contract",
+              "nameId": "reasonRetailContract",
+              "value": "Retail installment contract"
+            },
+            {
+              "label": "Where the buyer signed the contract, lives now, or lived when the contract was made, or where the vehicle is permanently garaged, if this claim is about a vehicle finance sale",
+              "nameId": "reasonVehicleFinance",
+              "value": "Vehicle finance sale"
+            },
+            {
+              "label": "Other",
+              "nameId": "reasonOther",
+              "value": "Other"
+            }
+          ],
+          "labels": []
+        },
+        {
+          "questionId": 32,
+          "text": "List the zip code of the location correlating with your checkbox",
+          "type": "text",
+          "logic": {
+            "enabled": false,
+            "prevQuestion": "",
+            "prevAnswer": ""
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [],
+          "labels": [],
+          "nameId": "locationZipCode",
+          "placeholder": "Zip Code"
+        }
+      ]
+    },
+    {
+      "sectionId": 10,
+      "sectionName": "Section 10",
+      "questions": [
+        {
+          "questionId": 33,
+          "text": "Is your claim about an attorney-client fee dispute?",
+          "type": "dropdown",
+          "logic": {
+            "enabled": false,
+            "prevQuestion": "",
+            "prevAnswer": ""
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "labels": []
+        },
+        {
+          "questionId": 34,
+          "text": "Have you had arbitration?",
+          "type": "dropdown",
+          "logic": {
+            "enabled": true,
+            "prevQuestion": "33",
+            "prevAnswer": "Yes"
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "labels": []
+        },
+        {
+          "questionId": 35,
+          "text": "Are you suing a public entity?",
+          "type": "dropdown",
+          "logic": {
+            "enabled": false,
+            "prevQuestion": "",
+            "prevAnswer": ""
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "labels": []
+        },
+        {
+          "questionId": 36,
+          "text": "Have you filed a written claim with the entity first?",
+          "type": "dropdown",
+          "logic": {
+            "enabled": true,
+            "prevQuestion": "35",
+            "prevAnswer": "Yes"
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "labels": []
+        },
+        {
+          "questionId": 37,
+          "text": "What date was your written claim filed?",
+          "type": "date",
+          "logic": {
+            "enabled": true,
+            "prevQuestion": "36",
+            "prevAnswer": "Yes"
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [],
+          "labels": []
+        },
+        {
+          "questionId": 38,
+          "text": "Have you filed more than 12 other small claims within the last 12 months in California?",
+          "type": "dropdown",
+          "logic": {
+            "enabled": false,
+            "prevQuestion": "",
+            "prevAnswer": ""
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "labels": []
+        },
+        {
+          "questionId": 39,
+          "text": "Is your claim for more than $2,500?",
+          "type": "dropdown",
+          "logic": {
+            "enabled": false,
+            "prevQuestion": "",
+            "prevAnswer": ""
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "labels": []
+        }
+      ]
+    },
+    {
+      "sectionId": 11,
+      "sectionName": "Section 11",
+      "questions": [
+        {
+          "questionId": 40,
+          "text": "Do you understand that by filing a claim in small claims court, you have no right to appeal this claim?",
+          "type": "dropdown",
+          "logic": {
+            "enabled": false,
+            "prevQuestion": "",
+            "prevAnswer": ""
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "labels": []
+        },
+        {
+          "questionId": 41,
+          "text": "I declare under penalty of perjury under the laws of the State of California that the information above and on any attachments to this form is true and correct",
+          "type": "dropdown",
+          "logic": {
+            "enabled": false,
+            "prevQuestion": "",
+            "prevAnswer": ""
+          },
+          "jump": {
+            "enabled": false,
+            "option": "",
+            "to": ""
+          },
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "labels": []
+        }
+      ]
+    }
+  ],
+  "hiddenFields": [],
+  "sectionCounter": 12,
+  "questionCounter": 42,
+  "hiddenFieldCounter": 1
+}
